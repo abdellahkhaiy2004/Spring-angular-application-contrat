@@ -1,0 +1,3 @@
++ do not use comments in code or emogies in README, try to be as normal student in controle style.
++ do not use another stack not demande in the project , try to respect dependecies in pom "C:\Users\xkon _m3aya 0__0\Desktop\exam_youssfi\project_exam\pom.xml" file and not try to add an dependecies with making solution with the available possible.
++ make sure to not add another features that are not demanded in controle or that's not include the project context.
