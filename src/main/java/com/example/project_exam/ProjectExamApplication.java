@@ -7,8 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class ProjectExamApplication {
@@ -23,9 +25,26 @@ public class ProjectExamApplication {
             ContratAutomobileRepository contratAutomobileRepository,
             ContratHabitationRepository contratHabitationRepository,
             ContratSanteRepository contratSanteRepository,
-            PaiementRepository paiementRepository
+            PaiementRepository paiementRepository,
+            AppUserRepository appUserRepository,
+            AppRoleRepository appRoleRepository,
+            PasswordEncoder passwordEncoder
     ) {
         return args -> {
+            AppRole roleClient = appRoleRepository.save(AppRole.builder().roleName("ROLE_CLIENT").build());
+            AppRole roleEmploye = appRoleRepository.save(AppRole.builder().roleName("ROLE_EMPLOYE").build());
+            AppRole roleAdmin = appRoleRepository.save(AppRole.builder().roleName("ROLE_ADMIN").build());
+
+            appUserRepository.save(AppUser.builder()
+                    .username("client1").password(passwordEncoder.encode("1234"))
+                    .active(true).roles(List.of(roleClient)).build());
+            appUserRepository.save(AppUser.builder()
+                    .username("employe1").password(passwordEncoder.encode("1234"))
+                    .active(true).roles(List.of(roleEmploye)).build());
+            appUserRepository.save(AppUser.builder()
+                    .username("admin").password(passwordEncoder.encode("1234"))
+                    .active(true).roles(List.of(roleAdmin)).build());
+
             Client c1 = clientRepository.save(Client.builder().nom("Ahmed Alami").email("ahmed@email.com").build());
             Client c2 = clientRepository.save(Client.builder().nom("Sara Benali").email("sara@email.com").build());
             Client c3 = clientRepository.save(Client.builder().nom("Youssef Idrissi").email("youssef@email.com").build());
