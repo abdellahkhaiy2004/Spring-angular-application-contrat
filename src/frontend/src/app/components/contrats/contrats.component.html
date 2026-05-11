@@ -1,0 +1,42 @@
+<div style="padding: 20px;">
+  <h2>Contrats d'assurance</h2>
+  <button (click)="showForm = !showForm">Ajouter un contrat automobile</button>
+
+  <div *ngIf="showForm" style="margin: 15px 0; padding: 15px; border: 1px solid #ccc;">
+    <h4>Nouveau contrat automobile</h4>
+    <div><label>Client ID : </label><input [(ngModel)]="newContrat.clientId" type="number" /></div>
+    <div><label>Cotisation : </label><input [(ngModel)]="newContrat.montantCotisation" type="number" /></div>
+    <div><label>Durée (mois) : </label><input [(ngModel)]="newContrat.dureeContrat" type="number" /></div>
+    <div><label>Taux couverture : </label><input [(ngModel)]="newContrat.tauxCouverture" type="number" /></div>
+    <div><label>Immatriculation : </label><input [(ngModel)]="newContrat.numImmatriculation" type="text" /></div>
+    <div><label>Marque : </label><input [(ngModel)]="newContrat.marque" type="text" /></div>
+    <div><label>Modèle : </label><input [(ngModel)]="newContrat.modele" type="text" /></div>
+    <button (click)="saveContrat()" style="margin-top: 10px;">Enregistrer</button>
+  </div>
+
+  <table border="1" style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Statut</th>
+        <th>Cotisation</th>
+        <th>Durée</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contrat of contrats">
+        <td>{{ contrat.id }}</td>
+        <td>{{ contrat.typeContrat }}</td>
+        <td>{{ contrat.statut }}</td>
+        <td>{{ contrat.montantCotisation }}</td>
+        <td>{{ contrat.dureeContrat }} mois</td>
+        <td>
+          <button (click)="valider(contrat.id!)">Valider</button>
+          <button (click)="resilier(contrat.id!)">Résilier</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

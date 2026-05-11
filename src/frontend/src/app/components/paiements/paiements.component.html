@@ -1,0 +1,45 @@
+<div style="padding: 20px;">
+  <h2>Paiements</h2>
+
+  <div style="margin-bottom: 15px;">
+    <label>Contrat ID : </label>
+    <input [(ngModel)]="contratIdRecherche" type="number" />
+    <button (click)="rechercher()">Rechercher</button>
+  </div>
+
+  <button (click)="showForm = !showForm">Ajouter un paiement</button>
+
+  <div *ngIf="showForm" style="margin: 15px 0; padding: 15px; border: 1px solid #ccc;">
+    <h4>Nouveau paiement</h4>
+    <div><label>Contrat ID : </label><input [(ngModel)]="newPaiement.contratId" type="number" /></div>
+    <div><label>Montant : </label><input [(ngModel)]="newPaiement.montant" type="number" /></div>
+    <div>
+      <label>Type : </label>
+      <select [(ngModel)]="newPaiement.type">
+        <option value="MENSUALITE">Mensualité</option>
+        <option value="PAIEMENT_ANNUEL">Paiement annuel</option>
+        <option value="PAIEMENT_EXCEPTIONNEL">Paiement exceptionnel</option>
+      </select>
+    </div>
+    <button (click)="savePaiement()" style="margin-top: 10px;">Enregistrer</button>
+  </div>
+
+  <table border="1" style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Montant</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of paiements">
+        <td>{{ p.id }}</td>
+        <td>{{ p.date }}</td>
+        <td>{{ p.montant }}</td>
+        <td>{{ p.type }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

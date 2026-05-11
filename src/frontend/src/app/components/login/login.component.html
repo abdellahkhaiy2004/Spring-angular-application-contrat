@@ -1,0 +1,13 @@
+<div style="max-width: 400px; margin: 100px auto; padding: 20px; border: 1px solid #ccc;">
+  <h2>Connexion</h2>
+  <div *ngIf="error" style="color: red;">{{ error }}</div>
+  <div>
+    <label>Nom d'utilisateur</label>
+    <input [(ngModel)]="username" type="text" style="width: 100%; margin-bottom: 10px;" />
+  </div>
+  <div>
+    <label>Mot de passe</label>
+    <input [(ngModel)]="password" type="password" style="width: 100%; margin-bottom: 10px;" />
+  </div>
+  <button (click)="login()">Se connecter</button>
+</div>

@@ -1,0 +1,38 @@
+<div style="padding: 20px;">
+  <h2>Clients</h2>
+  <button (click)="showForm = !showForm">Ajouter un client</button>
+
+  <div *ngIf="showForm" style="margin: 15px 0; padding: 15px; border: 1px solid #ccc;">
+    <h4>Nouveau client</h4>
+    <div>
+      <label>Nom : </label>
+      <input [(ngModel)]="newClient.nom" type="text" />
+    </div>
+    <div style="margin-top: 8px;">
+      <label>Email : </label>
+      <input [(ngModel)]="newClient.email" type="email" />
+    </div>
+    <button (click)="saveClient()" style="margin-top: 10px;">Enregistrer</button>
+  </div>
+
+  <table border="1" style="width: 100%; margin-top: 15px; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.nom }}</td>
+        <td>{{ client.email }}</td>
+        <td>
+          <button (click)="deleteClient(client.id!)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

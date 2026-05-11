@@ -1,0 +1,9 @@
+<div>
+  <nav *ngIf="authService.isLoggedIn()" style="padding: 10px; background: #333; color: white;">
+    <a routerLink="/clients" style="color: white; margin-right: 15px;">Clients</a>
+    <a routerLink="/contrats" style="color: white; margin-right: 15px;">Contrats</a>
+    <a routerLink="/paiements" style="color: white; margin-right: 15px;">Paiements</a>
+    <button (click)="logout()" style="float: right;">Déconnexion</button>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
